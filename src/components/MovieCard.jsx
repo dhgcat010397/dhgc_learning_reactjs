@@ -4,23 +4,15 @@ const MovieCard = ({
   movie: { title, vote_average, poster_path, release_date, original_language },
 }) => {
   return (
-    <div
-      className="movie-card"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        // alignItems: "center",
-      }}
-    >
+    <div className="movie-card flex flex-col">
+      {/* 
+      h-300: set your desired height
+      w-auto: maintain aspect ratio
+      object-contain: show full image, even if smaller
+      display: block: ensures the image is displayed as a block element
+      */}
       <img
-        className="movie-poster"
-        style={{
-          height: "300px" /* Set your desired height */,
-          width: "auto" /* Maintain aspect ratio */,
-          objectFit: "contain" /* Show full image, even if smaller */,
-          // background: "#eee" /* Optional: placeholder bg */,
-          display: "block",
-        }}
+        className="movie-poster h-[300px] w-auto object-contain block"
         src={
           poster_path
             ? `https://image.tmdb.org/t/p/w500/${poster_path}`
