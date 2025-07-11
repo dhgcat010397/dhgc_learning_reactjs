@@ -1,19 +1,26 @@
 import React, { useState } from "react";
-import LoginPage from "./LoginPage";
-import RegisterPage from "./RegisterPage";
+import { Outlet } from "react-router-dom";
+import { AuthContext } from "./AuthContext";
 
 const AuthPage = () => {
   const [showLoginPage, setShowLoginPage] = useState(true);
-  return showLoginPage ? (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-2xl font-bold mb-4">Login</h1>
-      <LoginPage showLoginPage={setShowLoginPage} />
-    </div>
-  ) : (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-2xl font-bold mb-4">Register</h1>
-      <RegisterPage showLoginPage={setShowLoginPage} />
-    </div>
+
+  return (
+    <AuthContext.Provider value={{ showLoginPage, setShowLoginPage }}>
+      <main>
+        <div className="pattern" />
+        <div className="wrapper">
+          <section className="all-movies">
+            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+              <h1 className="text-2xl font-bold mb-4">
+                {showLoginPage ? "Login" : "Register"}
+              </h1>
+              <Outlet />
+            </div>
+          </section>
+        </div>
+      </main>
+    </AuthContext.Provider>
   );
 };
 

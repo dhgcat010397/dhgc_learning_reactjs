@@ -1,12 +1,25 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const MovieCard = ({
-  movie: { title, vote_average, poster_path, release_date, original_language },
+  movie: {
+    id,
+    title,
+    vote_average,
+    poster_path,
+    release_date,
+    original_language,
+  },
 }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="movie-card flex flex-col">
+    <div
+      className="movie-card flex flex-col cursor-pointer"
+      onClick={() => navigate(`/movies/${id}`)}
+    >
       {/* 
-      h-300: set your desired height
+      h-[300px]: set your desired height
       w-auto: maintain aspect ratio
       object-contain: show full image, even if smaller
       display: block: ensures the image is displayed as a block element
