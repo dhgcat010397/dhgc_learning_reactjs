@@ -5,7 +5,8 @@ import SearchBar from "./components/SearchBar";
 import Spinner from "./components/Spinner";
 import MovieCard from "./components/MovieCard";
 import Pagination from "./components/Pagination";
-import { fetchMoviesApi, MAX_PAGES } from "./services/apis/moviesApi";
+import { default as api } from "./services/apis/moviesApi";
+import { MAX_PAGES } from "./utils/constants";
 
 const App = () => {
   const [page, setPage] = useState(1);
@@ -30,7 +31,7 @@ const App = () => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["movies", debouncedQuery, page],
     queryFn: ({ signal }) =>
-      fetchMoviesApi({ query: debouncedQuery, page, signal }),
+      api.fetchMovies({ query: debouncedQuery, page, signal }),
     keepPreviousData: true,
     onSuccess: (data) => {
       const safePages =
